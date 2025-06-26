@@ -1,0 +1,10 @@
+[
+	{
+		"mode": "debug",
+		"label": "Launch",
+		"adapter": "Delve",
+		"request": "launch",
+		"program": "${ZED_WORKTREE_ROOT}/main.go",
+		"cwd": "${ZED_WORKTREE_ROOT}"
+	}
+]
