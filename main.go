@@ -2,12 +2,12 @@ package main
 
 import (
 	"bufio"
+	"codo/agent"
+	"codo/tools"
 	"context"
 	"fmt"
 	"log"
 	"os"
-
-	"codo/agent"
 
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/service/bedrockruntime"
@@ -39,7 +39,8 @@ func main() {
 		return scanner.Text(), true
 	}
 
-	agent := agent.NewAgent(bedrockClient, getUserMessage)
+	tools := []tools.ToolDefinition{tools.ReadFileDefinition, tools.ListFilesDefinition, tools.EditFileDefinition}
+	agent := agent.NewAgent(bedrockClient, getUserMessage, tools)
 	err = agent.Run(context.TODO())
 	if err != nil {
 		fmt.Printf("Error: %s\n", err.Error())
